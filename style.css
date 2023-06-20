@@ -1,0 +1,13 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+}
+
+.main-div{
+    text-align: center;
+}
+
+#tries-wins-losses{
+    display: flex;
+    justify-content: space-around;
+}
