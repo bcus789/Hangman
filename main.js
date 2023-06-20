@@ -10,6 +10,7 @@ let chosenWord = ""
 let hiddenWord = ""
 let chosenWordArr = []
 let hiddenWordArr = []
+let isMatch = false
 
 startBtn.addEventListener("click", startGame)
 
@@ -51,13 +52,23 @@ function compare() {
         let letter = letterInput.value
         if (chosenWordArr[i] === letter) {
             hiddenWordArr[i] = letter
-        } 
+            isMatch = true
+            if (chosenWordArr[i] != letter){
+                isMatch = false
+            }        
+        } else if (chosenWordArr[i] != letter && isMatch == false){
+            updateTries()
+            break
+        }
     }
-    updateTriesAndLosses()
     renderHidden(hiddenWordArr)
 }
 
-function updateTriesAndLosses(){
+function updateTries(){
     tries --
     numTries.innerText = `Tries: ${tries}`
+
+    if (tries === 0){
+        numTries.innerText = "You LOOSE"
+    }
 }
