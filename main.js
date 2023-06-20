@@ -62,6 +62,7 @@ function compare() {
         }
     }
     renderHidden(hiddenWordArr)
+    letterInput.value = ""
 }
 
 function updateTries(){
