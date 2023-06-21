@@ -14,7 +14,9 @@ let hiddenWordArr = []
 startBtn.addEventListener("click", startGame)
 
 function startGame() {
-    tries = 6
+    startBtn.innerText = "Restart"
+    guessBtn.style.display = "inline"
+    tries = 10
     numTries.innerText = `Tries Left: ${tries}`
     lettersTried.innerText = ""
     chosenWordArr = Array.from(pickWord())
@@ -57,7 +59,7 @@ function compare() {
     }
     renderHidden(hiddenWordArr)
     letterInput.value = ""
-    checkForWin()
+    checkForWinLoose()
 }
 
 function updateTries(letter){
@@ -72,9 +74,14 @@ function pushLettersTried(letter){
     lettersTried.innerHTML += " " + letter
 }
 
-function checkForWin(){
+function checkForWinLoose(){
         if (hiddenWordArr.includes("-")){
         } else {
+            guessBtn.style.display = "none"
             numTries.innerText = "You WIN"
+        }
+        if (tries === 0){
+            guessBtn.style.display = "none"
+            numTries.innerText = "You LOOSE"
         }
 }

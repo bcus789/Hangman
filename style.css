@@ -14,3 +14,7 @@ body {
 #word-div{
     font-size: 25px;
 }
+
+#submit-letter{
+    display: none;
+}
