@@ -59,10 +59,6 @@ function compare() {
             if (chosenWordArr[i] != letter){
                 isMatch = false
             }
-            if(chosenWordArr[i] = chosenWordArr.length && chosenWordArr[i] != "-") {
-                numTries.innerText = "You Win"
-            }
-
         } else if (chosenWordArr[i] != letter && isMatch == false){
             updateTries()
             break
@@ -70,6 +66,7 @@ function compare() {
     }
     renderHidden(hiddenWordArr)
     letterInput.value = ""
+    checkForWin()
 }
 
 function updateTries(){
@@ -83,4 +80,11 @@ function updateTries(){
 
 function pushLettersTried(letter){
     lettersTried.innerHTML += " " + letter
+}
+
+function checkForWin(){
+        if (hiddenWordArr.includes("-")){
+        } else {
+            numTries.innerText = "You WIN"
+        }
 }
