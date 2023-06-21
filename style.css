@@ -11,3 +11,6 @@ body {
     display: flex;
     justify-content: space-around;
 }
+#word-div{
+    font-size: 25px;
+}

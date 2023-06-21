@@ -5,8 +5,9 @@ const submitLetter = document.getElementById("submit-letter")
 const letterInput = document.getElementById("letter-input")
 const numTries = document.getElementById("tries")
 const lettersTried = document.getElementById("letter-tried")
+const wordBank = ["paper",]
+
 let tries = ""
-let wordBank = ["paper", "typwriter", "annabolic"]
 let chosenWord = ""
 let hiddenWord = ""
 let chosenWordArr = []
@@ -17,7 +18,7 @@ startBtn.addEventListener("click", startGame)
 
 function startGame() {
     tries = 6
-    numTries.innerText = `Tries: ${tries}`
+    numTries.innerText = `Tries Left: ${tries}`
     chosenWord = pickWord()
     chosenWordArr = Array.from(chosenWord)
     hideText(chosenWord)
@@ -57,7 +58,11 @@ function compare() {
             isMatch = true
             if (chosenWordArr[i] != letter){
                 isMatch = false
-            }        
+            }
+            if(chosenWordArr[i] = chosenWordArr.length && chosenWordArr[i] != "-") {
+                numTries.innerText = "You Win"
+            }
+
         } else if (chosenWordArr[i] != letter && isMatch == false){
             updateTries()
             break
@@ -69,7 +74,7 @@ function compare() {
 
 function updateTries(){
     tries --
-    numTries.innerText = `Tries: ${tries}`
+    numTries.innerText = `Tries Left: ${tries}`
 
     if (tries === 0){
         numTries.innerText = "You LOOSE"
