@@ -8,21 +8,17 @@ const lettersTried = document.getElementById("letter-tried")
 const wordBank = ["paper",]
 
 let tries = ""
-let chosenWord = ""
-let hiddenWord = ""
 let chosenWordArr = []
 let hiddenWordArr = []
-let isMatch = false
 
 startBtn.addEventListener("click", startGame)
 
 function startGame() {
     tries = 6
     numTries.innerText = `Tries Left: ${tries}`
-    chosenWord = pickWord()
-    chosenWordArr = Array.from(chosenWord)
-    hideText(chosenWord)
-    hiddenWordArr = Array.from(hiddenWord)
+    lettersTried.innerText = ""
+    chosenWordArr = Array.from(pickWord())
+    hiddenWordArr = Array.from(hideText(chosenWordArr))
     renderHidden(hiddenWordArr)
 }
 
@@ -37,6 +33,7 @@ function pickWord() {
 function hideText(word) {
     for (i = 0; i < word.length; i++) {
         hiddenWord = "-".repeat(word.length)
+        return hiddenWord
     }
 }
 
@@ -51,30 +48,23 @@ submitLetter.addEventListener("click", compare)
 
 function compare() {
     pushLettersTried(letterInput.value)
+    updateTries(letterInput.value)
     for (i = 0; i < chosenWordArr.length; i++) {
         let letter = letterInput.value
         if (chosenWordArr[i] === letter) {
             hiddenWordArr[i] = letter
-            isMatch = true
-            if (chosenWordArr[i] != letter){
-                isMatch = false
-            }
-        } else if (chosenWordArr[i] != letter && isMatch == false){
-            updateTries()
-            break
-        }
+        } 
     }
     renderHidden(hiddenWordArr)
     letterInput.value = ""
     checkForWin()
 }
 
-function updateTries(){
-    tries --
-    numTries.innerText = `Tries Left: ${tries}`
-
-    if (tries === 0){
-        numTries.innerText = "You LOOSE"
+function updateTries(letter){
+    if (chosenWordArr.includes(letter)){
+    } else {
+        tries --
+        numTries.innerText = `Tries: ${tries}`
     }
 }
 
