@@ -4,6 +4,7 @@ const wordDiv = document.getElementById("word-div")
 const submitLetter = document.getElementById("submit-letter")
 const letterInput = document.getElementById("letter-input")
 const numTries = document.getElementById("tries")
+const lettersTried = document.getElementById("letter-tried")
 let tries = ""
 let wordBank = ["paper", "typwriter", "annabolic"]
 let chosenWord = ""
@@ -48,6 +49,7 @@ function renderHidden(word) {
 submitLetter.addEventListener("click", compare)
 
 function compare() {
+    pushLettersTried(letterInput.value)
     for (i = 0; i < chosenWordArr.length; i++) {
         let letter = letterInput.value
         if (chosenWordArr[i] === letter) {
@@ -72,4 +74,8 @@ function updateTries(){
     if (tries === 0){
         numTries.innerText = "You LOOSE"
     }
+}
+
+function pushLettersTried(letter){
+    lettersTried.innerHTML += " " + letter
 }
