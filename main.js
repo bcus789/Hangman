@@ -1,6 +1,7 @@
 const startBtn = document.getElementById("start-button")
 const guessBtn = document.getElementById("submit-letter")
 const wordDiv = document.getElementById("word-div")
+const gameDiv = document.getElementById("game-div")
 const submitLetter = document.getElementById("submit-letter")
 const letterInput = document.getElementById("letter-input")
 const numTries = document.getElementById("tries")
@@ -14,6 +15,7 @@ let hiddenWordArr = []
 startBtn.addEventListener("click", startGame)
 
 function startGame() {
+    gameDiv.style.display = "inline"
     startBtn.innerText = "Restart"
     guessBtn.style.display = "inline"
     tries = 10
