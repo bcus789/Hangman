@@ -85,3 +85,10 @@ function checkForWinLoose(){
             numTries.innerText = "You LOOSE"
         }
 }
+
+letterInput.addEventListener("keyup", function(event){
+    if (event.key == "Enter"){
+        event.preventDefault()
+        submitLetter.click()
+    }
+})
