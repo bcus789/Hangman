@@ -48,6 +48,13 @@ function renderHidden(word) {
     }
 }
 
+function renderWord(word) {
+    wordDiv.innerText = ""
+    for (i = 0; i < word.length; i++) {
+        wordDiv.innerText += chosenWordArr[i]
+    }
+}
+
 submitLetter.addEventListener("click", compare)
 
 function compare() {
@@ -85,6 +92,7 @@ function checkForWinLoose(){
         if (tries === 0){
             guessBtn.style.display = "none"
             numTries.innerText = "You LOOSE"
+            renderWord(chosenWordArr)
         }
 }
 
