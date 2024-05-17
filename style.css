@@ -18,4 +18,8 @@ body {
 
 #game-div {
     margin-top: 4rem;
+    display: none;
+}
+#start-button {
+    margin-bottom: 50px;
 }

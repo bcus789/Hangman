@@ -5,6 +5,7 @@ const wordDiv = document.getElementById("word-div")
 const inputField = document.getElementById("input-field")
 const numTries = document.getElementById("tries-left")
 const lettersTried = document.getElementById("letters-tried")
+const img = document.getElementById("image")
 // const wordBank = ['paper','potato', 'mobile', 'lego', 'jacket', 'apple', 'cat', 'throne', 'street', "jungle"]
 const wordBank = ['paper']
 
@@ -14,11 +15,11 @@ let hiddenWordArr
 
 const game = {
     start: function() {
+        gameDiv.style.display = "inline"
         startBtn.innerText = "Restart"
         tries = 10
         chosenWordArr = []
         hiddenWordArr = []
-        console.log(chosenWordArr)
         chosenWordArr = Array.from(game.pickWord())
         hiddenWordArr = chosenWordArr.map(() => "-")
         game.renderScreen()
@@ -33,6 +34,13 @@ const game = {
             wordDiv.innerText += hiddenWordArr[i]
         }
         numTries.innerHTML = `Tries Left ${tries}`
+
+        switch (tries) {
+            case 0:
+            tries = 9;
+            img.setAttribute( "src", "/hangman_images/hang_2.png");
+
+        }
     },
 }
 
