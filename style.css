@@ -7,14 +7,12 @@ body {
     text-align: center;
 }
 
-#tries-wins-losses{
+#wins-losses{
     display: flex;
     justify-content: space-around;
+
 }
 #word-div{
     font-size: 25px;
 }
 
-#submit-letter{
-    display: none;
-}

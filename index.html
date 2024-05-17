@@ -12,14 +12,16 @@
     <div class="main-div">
     <h1>Hangman Game</h1>
     <button id="start-button">Start</button>
-    <div id="game-div" style="display: none;">
-    <p>Letters Tried: <p id="letter-tried"></p></p>
-    <div id="tries-wins-losses">
-        <p id="tries">Tries Left:</p>
+    <div id="game-div">
+    <p>Letters Tried: <p id="letters-tried"></p></p>
+    <div id="wins-losses">
+        <p id="wins">Wins:</p>
+        <p id="word-div"></p>
+        <p id="losses">Losses:</p>
     </div>
-    <p id="word-div"></p>
-    <input maxlength="1" id="letter-input">
-    <button id="submit-letter">Guess</button>
+    <input maxlength="1" id="input-field">
+    <button id="guess-button">Guess</button>
+    <p id="tries-left">Tries Left:</p>
     </div>
     </div>
 </body>
