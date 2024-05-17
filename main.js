@@ -5,25 +5,56 @@ const wordDiv = document.getElementById("word-div")
 const inputField = document.getElementById("input-field")
 const numTries = document.getElementById("tries-left")
 const lettersTried = document.getElementById("letters-tried")
-const wordBank = ['paper','potato', 'mobile', 'lego', 'jacket', 'apple', 'cat', 'throne', 'street', "jungle"]
+// const wordBank = ['paper','potato', 'mobile', 'lego', 'jacket', 'apple', 'cat', 'throne', 'street', "jungle"]
+const wordBank = ['paper']
 
 let tries
-let chosenWordArr = []
-let hiddenWordArr = []
+let chosenWordArr
+let hiddenWordArr
 
 const game = {
     start: function() {
+        startBtn.innerText = "Restart"
         tries = 10
-        numTries.innerText = tries
-        chosenWordArr = Array.from(game.pickWord(wordBank))
+        chosenWordArr = []
+        hiddenWordArr = []
+        console.log(chosenWordArr)
+        chosenWordArr = Array.from(game.pickWord())
         hiddenWordArr = chosenWordArr.map(() => "-")
-        
+        game.renderScreen()
     },
-    pickWord: function(words) {
-        randomNum = Math.floor(Math.random() * words.length)
-        return words[randomNum]
+    pickWord: function() {
+        randomNum = Math.floor(Math.random() * wordBank.length)
+        return wordBank[randomNum]
+    },
+    renderScreen: function (){
+        wordDiv.innerText = ""
+        for (let i = 0; i < hiddenWordArr.length; i ++){
+            wordDiv.innerText += hiddenWordArr[i]
+        }
+        numTries.innerHTML = `Tries Left ${tries}`
+    },
+}
+
+const guessedLetter = {
+    compare: function (){
+        letter = inputField.value
+        lettersTried.innerHTML += letter + " "
+
+        for (let i = 0; i < chosenWordArr.length; i ++) {
+            if (chosenWordArr[i] == letter){
+                hiddenWordArr[i] = letter
+            }
+        }
+        game.renderScreen()
+
+            if (!chosenWordArr.includes(letter)){
+                tries --
+                game.renderScreen()
+            }
     }
 }
 
 startBtn.addEventListener("click", game.start)
+guessBtn.addEventListener("click", guessedLetter.compare)
 
