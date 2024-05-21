@@ -1,12 +1,14 @@
 const gameDiv = document.getElementById("game-div")
 const startBtn = document.getElementById("start-button")
 const guessBtn = document.getElementById("guess-button")
-const resetWLTBtn = document.getElementById("reset-wins-losses-tries")
+const newWordBtn = document.getElementById("new-word-button")
+const resetWinsLossesBtn = document.getElementById("reset-wins-losses")
 const wordDiv = document.getElementById("word-div")
 const inputField = document.getElementById("input-field")
 const numTries = document.getElementById("tries-left")
 const numWins = document.getElementById("wins")
 const numLosses = document.getElementById("losses")
+const lettersTriedDiv = document.getElementById("letters-tried-div")
 const lettersTried = document.getElementById("letters-tried")
 const img = document.getElementById("image")
 const alphabet = [
@@ -24,45 +26,36 @@ let hiddenWordArr
 
 const game = {
     start: function () {
-        img.src = "/hangman_images/hang_0.png"
+        img.src = "/hangman_images/hang0.png"
+        guessBtn.style.display = "inline"
         gameDiv.style.display = "inline"
-        startBtn.innerText = "New Word"
+        inputField.style.display = "inline"
+        lettersTriedDiv.style.display = "block"
+        newWordBtn.style.display = "none"
+        startBtn.style.display = "none"
         lettersTried.innerText = ""
         guessBtn.disabled = false
         inputField.disabled = false
         numWins.innerHTML = localStorage.getItem('wins')
         numLosses.innerHTML = localStorage.getItem('losses')
+        tries = 10
         chosenWordArr = []
         hiddenWordArr = []
         chosenWordArr = Array.from(game.pickWord().toUpperCase())
         hiddenWordArr = chosenWordArr.map(() => "-")
-
-        if (localStorage.getItem("tries")){
-            tries = localStorage.getItem("tries")
-            numTries.innerHTML = localStorage.getItem("tries")
-        }
-        else {
-            tries = 10
-            numTries.innerHTML = localStorage.getItem("tries")
-        }
-
         game.renderScreen()
     },
     pickWord: function () {
         randomNum = Math.floor(Math.random() * wordBank.length)
         return wordBank[randomNum]
     },
-    resetWinsLossesTries: function (){
+    resetWinsLossess: function (){
         wins = 0
         losses = 0
-        tries = 10
         localStorage.setItem("wins", wins.toString())
         localStorage.setItem("losses", losses.toString())
-        localStorage.setItem("tries", tries.toString())
         numWins.innerHTML = localStorage.getItem('wins')
         numLosses.innerHTML = localStorage.getItem('losses')
-        numTries.innerHTML = localStorage.getItem('tries')
-        img.src = "hangman_images/hang0.png"
         game.renderScreen()
     },
     renderScreen: function () {
@@ -72,41 +65,42 @@ const game = {
             wordDiv.innerText += hiddenWordArr[i]
         }
         if (!game.checkWin()) {
-            tries = localStorage.getItem("tries")
             numTries.innerHTML = tries
 
             switch (tries) {
-                case "9":
+                case 9:
                     img.src = "hangman_images/hang1.png"
                     break;
-                case "8":
+                case 8:
                     img.src = "hangman_images/hang2.png"
                     break;
-                case "7":
+                case 7:
                     img.src = "hangman_images/hang3.png"
                     break;
-                case "6":
+                case 6:
                     img.src = "hangman_images/hang4.png"
                     break;
-                case "5":
+                case 5:
                     img.src = "hangman_images/hang5.png"
                     break;
-                case "4":
+                case 4:
                     img.src = "hangman_images/hang6.png"
                     break;
-                case "3":
+                case 3:
                     img.src = "hangman_images/hang7.png"
                     break;
-                case "2":
+                case 2:
                     img.src = "hangman_images/hang8.png"
                     break;
-                case "1":
+                case 1:
                     img.src = "hangman_images/hang9.png"
                     break;
-                case "0":
+                case 0:
                     img.src = "hangman_images/hang10.png"
-                    guessBtn.disabled = true
-                    inputField.disabled = true
+                    lettersTriedDiv.style.display = "none"
+                    guessBtn.style.display = "none"
+                    inputField.style.display = "none"
+                    newWordBtn.style.display = "inline"
                     numTries.innerHTML = `YOU LOOSE`
                     tries = 10
                     localStorage.setItem("tries", tries.toString())
@@ -121,8 +115,10 @@ const game = {
             }
         }
         else {
-            guessBtn.disabled = true
-            inputField.disabled = true
+            guessBtn.style.display = "none"
+            inputField.style.display = "none"
+            lettersTriedDiv.style.display = "none"
+            newWordBtn.style.display = "inline"
             tries = 10
             localStorage.setItem("tries", tries.toString())
             wins++
@@ -172,7 +168,8 @@ const guessedLetter = {
 }
 
 startBtn.addEventListener("click", game.start)
-resetWLTBtn.addEventListener("click", game.resetWinsLossesTries)
+newWordBtn.addEventListener("click", game.start)
+resetWinsLossesBtn.addEventListener("click", game.resetWinsLosses)
 guessBtn.addEventListener("click", guessedLetter.compareAndReplace)
 inputField.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
