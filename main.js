@@ -26,7 +26,6 @@ let hiddenWordArr
 
 const game = {
     start: function () {
-        img.src = "/hangman_images/hang0.png"
         guessBtn.style.display = "inline"
         gameDiv.style.display = "inline"
         inputField.style.display = "inline"
@@ -68,6 +67,9 @@ const game = {
             numTries.innerHTML = tries
 
             switch (tries) {
+                case 10:
+                    img.src = "hangman_images/hang0.png"
+                    break;
                 case 9:
                     img.src = "hangman_images/hang1.png"
                     break;
@@ -169,7 +171,7 @@ const guessedLetter = {
 
 startBtn.addEventListener("click", game.start)
 newWordBtn.addEventListener("click", game.start)
-resetWinsLossesBtn.addEventListener("click", game.resetWinsLosses)
+resetWinsLossesBtn.addEventListener("click", game.resetWinsLossess)
 guessBtn.addEventListener("click", guessedLetter.compareAndReplace)
 inputField.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
