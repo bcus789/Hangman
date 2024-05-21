@@ -74,34 +74,34 @@ const game = {
 
             switch (tries) {
                 case 9:
-                    img.src = "/hangman_images/hang_1.png"
+                    img.src = "hangman_images/hang_1.png"
                     break;
                 case 8:
-                    img.src = "/hangman_images/hang_2.png"
+                    img.src = "hangman_images/hang_2.png"
                     break;
                 case 7:
-                    img.src = "/hangman_images/hang_3.png"
+                    img.src = "hangman_images/hang_3.png"
                     break;
                 case 6:
-                    img.src = "/hangman_images/hang_4.png"
+                    img.src = "hangman_images/hang_4.png"
                     break;
                 case 5:
-                    img.src = "/hangman_images/hang_5.png"
+                    img.src = "hangman_images/hang_5.png"
                     break;
                 case 4:
-                    img.src = "/hangman_images/hang_6.png"
+                    img.src = "hangman_images/hang_6.png"
                     break;
                 case 3:
-                    img.src = "/hangman_images/hang_7.png"
+                    img.src = "hangman_images/hang_7.png"
                     break;
                 case 2:
-                    img.src = "/hangman_images/hang_8.png"
+                    img.src = "hangman_images/hang_8.png"
                     break;
                 case 1:
-                    img.src = "/hangman_images/hang_9.png"
+                    img.src = "hangman_images/hang_9.png"
                     break;
                 case 0:
-                    img.src = "/hangman_images/hang_10.png"
+                    img.src = "hangman_images/hang_10.png"
                     guessBtn.disabled = true
                     inputField.disabled = true
                     numTries.innerHTML = `YOU LOOSE`
